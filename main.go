@@ -20,6 +20,9 @@ func main() {
 		contact:  contactInfo{"alex@foobar.cor", 94000},
 	}
 
-	fmt.Printf("%+v", alex)
+	alex.print()
+}
 
+func (p person) print() {
+	fmt.Printf("%+v", p)
 }
