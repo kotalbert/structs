@@ -20,9 +20,19 @@ func main() {
 		contact:  contactInfo{"alex@foobar.cor", 94000},
 	}
 
-	alex.print()
+	ap := &alex
+
+	ap.print()
+
+	ap.updateName("Aleksej")
+
+	ap.print()
 }
 
-func (p person) print() {
-	fmt.Printf("%+v", p)
+func (p *person) print() {
+	fmt.Printf("%+v\n", p)
+}
+
+func (p *person) updateName(newFirstName string) {
+	p.firstName = newFirstName
 }
