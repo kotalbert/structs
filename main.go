@@ -20,13 +20,9 @@ func main() {
 		contact:  contactInfo{"alex@foobar.cor", 94000},
 	}
 
-	ap := &alex
-
-	ap.print()
-
-	ap.updateName("Aleksej")
-
-	ap.print()
+	alex.print()
+	alex.updateName("Aleksej")
+	alex.print()
 }
 
 func (p *person) print() {
@@ -35,4 +31,6 @@ func (p *person) print() {
 
 func (p *person) updateName(newFirstName string) {
 	p.firstName = newFirstName
+	// equivalent syntax
+	//(*p).firstName = newFirstName
 }
