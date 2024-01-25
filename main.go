@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
 	"time"
 )
 
@@ -12,14 +14,19 @@ type user struct {
 	createdAt time.Time
 }
 
-func newUser(firstName string, lastName string, birthDate string) user {
-	appUser := user{
+// Constructor
+// Input validation
+func newUser(firstName string, lastName string, birthDate string) (*user, error) {
+	if firstName == "" || lastName == "" || birthDate == "" {
+		return nil, errors.New("firstname, lastname, birthdate are expecting non empty string")
+	}
+
+	return &user{
 		firstName,
 		lastName,
 		birthDate,
 		time.Now(),
-	}
-	return appUser
+	}, nil
 }
 
 func (u user) outputUserData() {
@@ -31,7 +38,11 @@ func main() {
 	ln := getUserData("Please enter your last name: ")
 	bd := getUserData("Please enter your bd (MM/DD/YYYY): ")
 
-	appUser := newUser(fn, ln, bd)
+	appUser, err := newUser(fn, ln, bd)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	appUser.outputUserData()
 
@@ -40,6 +51,6 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	_, _ = fmt.Scan(&value)
+	_, _ = fmt.Scanln(&value)
 	return value
 }
