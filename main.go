@@ -17,6 +17,6 @@ func main() {
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	_, _ = fmt.Scan(&value)
 	return value
 }
