@@ -13,6 +13,26 @@ type User struct {
 	createdAt time.Time
 }
 
+type Admin struct {
+	email    string
+	password string
+	User
+}
+
+// NewAdmin Constructor
+// Demonstration of inheritance by composition @@
+func NewAdmin(email string, password string) Admin {
+	return Admin{
+		email:    email,
+		password: password,
+		User: User{"ADMIN",
+			"ADMIN",
+			"--/--/--",
+			time.Now(),
+		},
+	}
+}
+
 // NewUser Constructor
 // Input validation
 func NewUser(firstName string, lastName string, birthDate string) (*User, error) {
