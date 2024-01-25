@@ -1,36 +1,22 @@
 package main
 
-import "fmt"
-
-type person struct {
-	firstName string
-	lastName  string
-	contact   contactInfo
-}
-
-type contactInfo struct {
-	email   string
-	zipCode int
-}
+import (
+	"fmt"
+)
 
 func main() {
+	firstName := getUserData("Please enter your first name: ")
+	lastName := getUserData("Please enter your last name: ")
+	birthdate := getUserData("Please enter your birthdate (MM/DD/YYYY): ")
 
-	alex := person{firstName: "Alex",
-		lastName: "DeLarge",
-		contact:  contactInfo{"alex@foobar.cor", 94000},
-	}
+	// ... do something awesome with that gathered data!
 
-	alex.print()
-	alex.updateName("Aleksej")
-	alex.print()
+	fmt.Println(firstName, lastName, birthdate)
 }
 
-func (p *person) print() {
-	fmt.Printf("%+v\n", p)
-}
-
-func (p *person) updateName(newFirstName string) {
-	p.firstName = newFirstName
-	// equivalent syntax
-	//(*p).firstName = newFirstName
+func getUserData(promptText string) string {
+	fmt.Print(promptText)
+	var value string
+	fmt.Scan(&value)
+	return value
 }
